@@ -216,9 +216,15 @@ function validateInputFile(lines) {
         }
         inputTotalProceeds += parseFloat(lines[i][3]);
     }
+    // Rounding of to 2 decimal places.
+    inputTotalProceeds = round(inputTotalProceeds, 2)
     if (inputTotalProceeds.toFixed(2) != parseFloat(getTotalProceeds()).toFixed(2)) {
         showErrorMessage("Total proceeds in the input file doesn't match the total proceeds in the 1099.");
         return false;
     }
     return true;
+}
+
+function round(value, decimals) {
+  return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
 }
